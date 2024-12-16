@@ -1,0 +1,10 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /submissions/{submission} {
+      allow write: if true;  // Allow writes to submissions collection
+      allow read: if false;  // Prevent unauthorized reads
+    }
+  }
+}
