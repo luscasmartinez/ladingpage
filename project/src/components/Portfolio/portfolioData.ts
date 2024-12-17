@@ -15,9 +15,9 @@ export const portfolioItems = [
     },
     {
       id: '2',
-      title: 'Redesign Marca Stellar',
+      title: 'Parceria Armar Clube de Tiro',
       description: 'Renovação completa da identidade visual',
-      type: 'image' as const,
+      type: 'video' as const,
       url: adsTiro,
       thumbnail: adsITiro,
     },
