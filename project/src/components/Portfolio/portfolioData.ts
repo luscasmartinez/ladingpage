@@ -1,14 +1,15 @@
 import adsPizza from '../../data/video/ads_pizza.mp4';
+import adsIPizza from '../../data/img/pizza.jpg'
 
 
 export const portfolioItems = [
     {
       id: '1',
-      title: 'Campanha Verão 2024',
+      title: 'Pizzaria Santo Antonio',
       description: 'Vídeo promocional que alcançou mais de 1M de visualizações',
       type: 'video' as const,
       url: adsPizza,
-      thumbnail: 'https://images.unsplash.com/photo-1492619375914-88005aa9e8fb',
+      thumbnail: 'https://instagram.furg2-1.fna.fbcdn.net/v/t39.30808-6/461136354_1088525596612007_3148706237850168272_n.jpg?stp=dst-jpg_e35_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6ImltYWdlX3VybGdlbi4xMDgweDEwODAuc2RyLmYzMDgwOC5kZWZhdWx0X2ltYWdlIn0&_nc_ht=instagram.furg2-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=2nApKcsLIEEQ7kNvgH1CvPi&_nc_gid=d4f93696708d482c859c361deba4822d&edm=APoiHPcAAAAA&ccb=7-5&ig_cache_key=MzQ2ODAzMzM3MTk4MjQ1MDY0MA%3D%3D.3-ccb7-5&oh=00_AYAEuhGT9svqFq2S8WIcnkLZIJfSFakKKDsGkVRHrRrTPQ&oe=6767B0CF&_nc_sid=22de04',
     },
     {
       id: '2',
