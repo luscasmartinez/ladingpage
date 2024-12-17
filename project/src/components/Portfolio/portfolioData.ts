@@ -1,5 +1,7 @@
 import adsPizza from '../../data/video/ads_pizza.mp4';
 import adsIPizza from '../../data/img/pizza.jpg'
+import adsTiro from '../../data/video/tiro.mp4'
+import adsITiro from '../../data/img/arma.jpg'
 
 
 export const portfolioItems = [
