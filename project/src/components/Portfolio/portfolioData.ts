@@ -36,8 +36,8 @@ export const portfolioItems = [
       title: 'Motion Graphics Inovador',
       description: 'Animações para redes sociais',
       type: 'video' as const,
-      url: 'https://www.youtube.com/watch?v=b2kusGPX8mk',
-      thumbnail: 'https://www.youtube.com/watch?v=b2kusGPX8mk',
+      url: 'https://www.youtube.com/watch?v=pPRVNJidK2M',
+      thumbnail: 'https://www.youtube.com/watch?v=pPRVNJidK2M',
     },
     {
       id: '6',
