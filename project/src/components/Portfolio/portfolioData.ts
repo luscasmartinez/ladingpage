@@ -12,8 +12,8 @@ export const portfolioItems = [
       title: 'Redesign Marca Stellar',
       description: 'Renovação completa da identidade visual',
       type: 'image' as const,
-      url: 'https://images.unsplash.com/photo-1634942537034-2531766767d1',
-      thumbnail: 'https://images.unsplash.com/photo-1634942537034-2531766767d1',
+      url: 'https://instagram.furg2-1.fna.fbcdn.net/v/t51.2885-15/469188357_18023599586630803_5133066950204112494_n.jpg?stp=dst-jpg_e35_p720x720_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6ImltYWdlX3VybGdlbi4xMDgweDEzNTAuc2RyLmY3NTc2MS5kZWZhdWx0X2ltYWdlIn0&_nc_ht=instagram.furg2-1.fna.fbcdn.net&_nc_cat=107&_nc_ohc=qecTU24qChEQ7kNvgGYeyNG&_nc_gid=a43a240a45034923a5dedff24fc54144&edm=AP4sbd4BAAAA&ccb=7-5&ig_cache_key=MzUxNTcwOTYyMzM1MDQ4MjU1Nw%3D%3D.3-ccb7-5&oh=00_AYCZRvrJ-W1Gzdfr0pBk5nQ4OBB49DMbj3DTqna0LNtbFA&oe=67667357&_nc_sid=7a9f4b',
+      thumbnail: 'https://instagram.furg2-1.fna.fbcdn.net/v/t51.2885-15/469188357_18023599586630803_5133066950204112494_n.jpg?stp=dst-jpg_e35_p720x720_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6ImltYWdlX3VybGdlbi4xMDgweDEzNTAuc2RyLmY3NTc2MS5kZWZhdWx0X2ltYWdlIn0&_nc_ht=instagram.furg2-1.fna.fbcdn.net&_nc_cat=107&_nc_ohc=qecTU24qChEQ7kNvgGYeyNG&_nc_gid=a43a240a45034923a5dedff24fc54144&edm=AP4sbd4BAAAA&ccb=7-5&ig_cache_key=MzUxNTcwOTYyMzM1MDQ4MjU1Nw%3D%3D.3-ccb7-5&oh=00_AYCZRvrJ-W1Gzdfr0pBk5nQ4OBB49DMbj3DTqna0LNtbFA&oe=67667357&_nc_sid=7a9f4b',
     },
     {
       id: '3',
