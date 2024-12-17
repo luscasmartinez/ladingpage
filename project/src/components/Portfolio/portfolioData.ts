@@ -1,4 +1,5 @@
-import video1 from './data/video/ads_pizza.mp4';
+import adsPizza from '../../data/video/ads_pizza.mp4';
+
 
 export const portfolioItems = [
     {
@@ -6,7 +7,7 @@ export const portfolioItems = [
       title: 'Campanha Verão 2024',
       description: 'Vídeo promocional que alcançou mais de 1M de visualizações',
       type: 'video' as const,
-      url: video1,
+      url: adsPizza,
       thumbnail: 'https://images.unsplash.com/photo-1492619375914-88005aa9e8fb',
     },
     {
