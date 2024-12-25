@@ -12,12 +12,23 @@ export default function PortfolioItem({
 }: PortfolioItemType) {
   const [showVideo, setShowVideo] = useState(false);
 
+  const getEmbedUrl = (url: string) => {
+    if (url.includes('youtube.com/watch')) {
+      const videoId = url.split('v=')[1]?.split('&')[0];
+      return `https://www.youtube.com/embed/${videoId}`;
+    } else if (url.includes('vimeo.com/')) {
+      const videoId = url.split('vimeo.com/')[1];
+      return `https://player.vimeo.com/video/${videoId}`;
+    }
+    return url;
+  };
+
   const renderMedia = () => {
     if (type === 'video' && showVideo) {
       return (
         <div className="relative" style={{ paddingBottom: `${(dimensions?.height || 608) / (dimensions?.width || 1080) * 100}%` }}>
           <iframe
-            src={`${url}?autoplay=1`}
+            src={`${getEmbedUrl(url)}?autoplay=1`}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             className="absolute top-0 left-0 w-full h-full rounded-lg"
