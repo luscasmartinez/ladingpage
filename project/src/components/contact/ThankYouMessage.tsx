@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckCircle, Home } from 'lucide-react';
+import { CheckCircle, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function ThankYouMessage() {
@@ -14,11 +14,11 @@ export default function ThankYouMessage() {
           Nossa equipe entrará em contato em breve para começar a transformar seu projeto em realidade.
         </p>
         <Link
-          to="/"
+          to="/#portfolio"
           className="inline-flex items-center gap-2 bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors"
         >
-          <Home className="w-5 h-5" />
-          Voltar para a página inicial
+          Ver nosso portfólio
+          <ArrowRight className="w-5 h-5" />
         </Link>
       </div>
     </div>

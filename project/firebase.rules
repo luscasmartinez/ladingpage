@@ -3,8 +3,20 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /submissions/{submission} {
-      allow write: if true;  // Allow writes to submissions collection
-      allow read: if false;  // Prevent unauthorized reads
+      // Allow read/write for authenticated users
+      allow read, write: if request.auth != null;
+      
+      // Allow creation for anyone (form submissions)
+      allow create: if true;
+      
+      // Validate submission data
+      allow create: if
+        request.resource.data.businessName is string &&
+        request.resource.data.email is string &&
+        request.resource.data.phone is string &&
+        request.resource.data.businessDescription is string &&
+        request.resource.data.ideas is string &&
+        request.resource.data.services is list;
     }
   }
 }

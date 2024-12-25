@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
 import { Play, ExternalLink, X } from 'lucide-react';
-import { PortfolioItemType } from './types';
+import { PortfolioItem as PortfolioItemType } from '../../types/portfolio';
 
-export default function PortfolioItem({ title, description, type, url, thumbnail }: PortfolioItemType) {
+export default function PortfolioItem({ 
+  title, 
+  description, 
+  type, 
+  url, 
+  thumbnail, 
+  dimensions 
+}: PortfolioItemType) {
   const [showVideo, setShowVideo] = useState(false);
 
   const renderMedia = () => {
     if (type === 'video' && showVideo) {
       return (
-        <div className="relative pb-[56.25%] h-0">
+        <div className="relative" style={{ paddingBottom: `${(dimensions?.height || 608) / (dimensions?.width || 1080) * 100}%` }}>
           <iframe
             src={`${url}?autoplay=1`}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
