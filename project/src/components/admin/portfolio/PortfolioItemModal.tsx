@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { PortfolioItem } from '../../../types/portfolio';
 import { addPortfolioItem, updatePortfolioItem } from '../../../services/portfolioService';
+import FileUploadField from './FileUploadField';
+import { getFileType } from '../../../services/storageService';
 
 interface PortfolioItemModalProps {
   isOpen: boolean;
@@ -64,6 +66,18 @@ export default function PortfolioItemModal({
     }
   };
 
+  const handleMainFileUploaded = (url: string) => {
+    setFormData(prev => ({
+      ...prev,
+      url,
+      thumbnail: prev.type === 'image' ? url : prev.thumbnail
+    }));
+  };
+
+  const handleThumbnailUploaded = (url: string) => {
+    setFormData(prev => ({ ...prev, thumbnail: url }));
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -119,31 +133,19 @@ export default function PortfolioItemModal({
             </select>
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              URL {formData.type === 'video' ? 'do Vídeo' : 'da Imagem'}
-            </label>
-            <input
-              type="url"
-              value={formData.url}
-              onChange={(e) => setFormData({ ...formData, url: e.target.value })}
-              className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
-              required
-            />
-          </div>
+          <FileUploadField
+            label={formData.type === 'video' ? 'Vídeo' : 'Imagem'}
+            accept={formData.type === 'video' ? 'video/*' : 'image/*'}
+            onFileUploaded={handleMainFileUploaded}
+            currentUrl={formData.url}
+          />
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              URL da Thumbnail
-            </label>
-            <input
-              type="url"
-              value={formData.thumbnail}
-              onChange={(e) => setFormData({ ...formData, thumbnail: e.target.value })}
-              className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
-              required
-            />
-          </div>
+          <FileUploadField
+            label="Thumbnail"
+            accept="image/*"
+            onFileUploaded={handleThumbnailUploaded}
+            currentUrl={formData.thumbnail}
+          />
 
           <div className="flex justify-end gap-3">
             <button
