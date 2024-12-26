@@ -24,24 +24,17 @@ export default function Portfolio() {
     }
   };
 
-  if (isLoading) {
-    return (
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <PortfolioHeader />
-          <div className="flex justify-center items-center py-12">
-            <Loader2 className="w-8 h-8 animate-spin text-primary" />
-          </div>
-        </div>
-      </section>
-    );
-  }
-
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-gradient-to-br from-[#ff1744] via-[#f90342] to-[#f90342]/90">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <PortfolioHeader />
-        <PortfolioGrid items={items} />
+        {isLoading ? (
+          <div className="flex justify-center items-center py-12">
+            <Loader2 className="w-8 h-8 animate-spin text-white" />
+          </div>
+        ) : (
+          <PortfolioGrid items={items} />
+        )}
       </div>
     </section>
   );
