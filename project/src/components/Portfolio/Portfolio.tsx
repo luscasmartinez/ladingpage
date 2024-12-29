@@ -25,7 +25,7 @@ export default function Portfolio() {
   };
 
   return (
-    <section className="py-24 bg-gradient-to-br from-[#ff1744] via-[#f90342] to-[#f90342]/90">
+    <section className="py-24 bg-[#F1003E]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <PortfolioHeader />
         {isLoading ? (
@@ -35,7 +35,12 @@ export default function Portfolio() {
         ) : (
           <PortfolioGrid items={items} />
         )}
+
+        
       </div>
+      
     </section>
+
+    
   );
 }

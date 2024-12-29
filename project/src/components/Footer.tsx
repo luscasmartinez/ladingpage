@@ -17,6 +17,11 @@ export default function Footer() {
             <p className="text-gray-400">+55 (11) 99999-9999</p>
           </div>
           <div>
+            <h4 className="text-lg font-semibold mb-4">Contato</h4>
+            <p className="text-gray-400">contato@flipcriativa.com.br</p>
+            <p className="text-gray-400">+55 (11) 99999-9999</p>
+          </div>
+          <div>
             <h4 className="text-lg font-semibold mb-4">Redes Sociais</h4>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
@@ -37,6 +42,7 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-gray-800 text-center text-gray-400">
           <p>&copy; 2024 FlipCriativa. Todos os direitos reservados.</p>
         </div>
+        
       </div>
     </footer>
   );

@@ -22,7 +22,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section className="py-24 bg-gradient-to-br from-[#f90342] via-[#f90342]/90 to-[#ff1744]">
+    <section className="py-24 bg-[#F1003E]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl font-bold text-center mb-16 text-white">
           Nossos Serviços

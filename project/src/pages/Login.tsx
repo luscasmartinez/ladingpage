@@ -33,12 +33,17 @@ export default function Login() {
           </Link>
 
           <h2 className="text-2xl font-bold text-center text-gray-900 mb-8">
-            {isLogin ? 'Login Administrativo' : ''}
+            {isLogin ? 'Login Administrativo' : 'Criar Conta'}
           </h2>
           
           {isLogin ? <LoginForm /> : <RegisterForm />}
           
-          
+          <button
+            onClick={() => setIsLogin(!isLogin)}
+            className="mt-4 text-primary hover:text-primary-dark text-sm text-center w-full"
+          >
+            {isLogin ? 'Criar uma nova conta' : 'Já tenho uma conta'}
+          </button>
         </div>
       </div>
     </div>
