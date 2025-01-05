@@ -9,9 +9,9 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <Hero />
-      <Services />
-      <Portfolio />
       <Testimonials />
+      <Portfolio />
+      <Services />
       <Footer />
     </div>
   );

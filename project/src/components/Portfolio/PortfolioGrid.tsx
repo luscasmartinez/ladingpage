@@ -16,9 +16,18 @@ export default function PortfolioGrid({ items }: PortfolioGridProps) {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] auto-rows-[minmax(200px,auto)] gap-6">
       {items.map((item) => (
-        <PortfolioItem key={item.id} {...item} />
+        <div 
+          key={item.id} 
+          className={`${
+            item.type === 'video' && item.aspectRatio === '9:16'
+              ? 'row-span-2'  // Vídeos verticais ocupam 2 linhas
+              : ''
+          }`}
+        >
+          <PortfolioItem {...item} />
+        </div>
       ))}
     </div>
   );

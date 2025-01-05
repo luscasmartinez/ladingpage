@@ -1,18 +1,30 @@
 import React from 'react';
 import { getVideoEmbedUrl } from '../../utils/video';
+import { VideoAspectRatio } from '../../types/portfolio';
 
 interface VideoPlayerProps {
   url: string;
   title: string;
+  aspectRatio?: VideoAspectRatio;
   dimensions?: { width: number; height: number };
 }
 
-export default function VideoPlayer({ url, title, dimensions }: VideoPlayerProps) {
+export default function VideoPlayer({ url, title, aspectRatio, dimensions }: VideoPlayerProps) {
   const embedUrl = getVideoEmbedUrl(url);
-  const aspectRatio = dimensions ? (dimensions.height / dimensions.width) * 100 : 56.25; // Default to 16:9
+  
+  // Calculate aspect ratio padding
+  const getPaddingBottom = () => {
+    if (dimensions) {
+      return (dimensions.height / dimensions.width) * 100;
+    }
+    return aspectRatio === '9:16' ? 177.78 : 56.25; // 16:9 = 56.25%, 9:16 = 177.78%
+  };
 
   return (
-    <div className="relative w-full" style={{ paddingBottom: `${aspectRatio}%` }}>
+    <div 
+      className="relative w-full"
+      style={{ paddingBottom: `${getPaddingBottom()}%` }}
+    >
       <iframe
         src={embedUrl}
         title={title}

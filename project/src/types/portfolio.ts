@@ -1,3 +1,5 @@
+export type VideoAspectRatio = '16:9' | '9:16';
+
 export interface PortfolioItem {
   id: string;
   title: string;
@@ -5,6 +7,7 @@ export interface PortfolioItem {
   type: 'video' | 'image';
   url: string;
   thumbnail: string;
+  aspectRatio?: VideoAspectRatio;
   dimensions?: {
     width: number;
     height: number;

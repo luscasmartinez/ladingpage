@@ -8,10 +8,18 @@ export default function PortfolioItem({
   description, 
   type, 
   url, 
-  thumbnail, 
+  thumbnail,
+  aspectRatio,
   dimensions 
 }: PortfolioItemType) {
   const [showVideo, setShowVideo] = useState(false);
+
+  const getThumbnailClassName = () => {
+    if (type === 'video' && aspectRatio === '9:16') {
+      return 'h-[600px] object-cover rounded-lg';
+    }
+    return 'h-64 object-cover rounded-lg';
+  };
 
   const renderMedia = () => {
     if (type === 'video' && showVideo) {
@@ -19,6 +27,7 @@ export default function PortfolioItem({
         <VideoPlayer 
           url={url} 
           title={title}
+          aspectRatio={aspectRatio}
           dimensions={dimensions}
         />
       );
@@ -29,7 +38,7 @@ export default function PortfolioItem({
         <img
           src={thumbnail}
           alt={title}
-          className="w-full h-64 object-cover rounded-lg"
+          className={getThumbnailClassName()}
         />
         {type === 'video' && (
           <button
@@ -44,7 +53,7 @@ export default function PortfolioItem({
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+    <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow h-full">
       {renderMedia()}
       <div className="p-6">
         <h3 className="text-xl font-semibold text-secondary-dark mb-2">{title}</h3>

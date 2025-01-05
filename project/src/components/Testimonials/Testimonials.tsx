@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import TestimonialCard from './TestimonialCard';
-import { getTestimonials } from '../../services/testimonialService'; // Função para buscar depoimentos
+import TestimonialCarousel from './TestimonialCarousel';
+import { getTestimonials } from '../../services/testimonialService';
 import { Loader2 } from 'lucide-react';
-import { Testimonial } from '../types/testimonial';
+import { Testimonial } from '../../types/testimonial';
 
 export default function Testimonials() {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
@@ -34,18 +34,12 @@ export default function Testimonials() {
           <div className="flex justify-center items-center">
             <Loader2 className="w-8 h-8 animate-spin text-white" />
           </div>
+        ) : testimonials.length > 0 ? (
+          <TestimonialCarousel testimonials={testimonials} />
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {testimonials.length > 0 ? (
-              testimonials.map((testimonial) => (
-                <TestimonialCard key={testimonial.id} {...testimonial} />
-              ))
-            ) : (
-              <p className="text-center text-white text-lg">
-                Nenhum depoimento disponível no momento.
-              </p>
-            )}
-          </div>
+          <p className="text-center text-white text-lg">
+            Nenhum depoimento disponível no momento.
+          </p>
         )}
       </div>
     </section>

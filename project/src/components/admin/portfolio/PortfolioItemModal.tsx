@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
-import { PortfolioItem } from '../../../types/portfolio';
+import { PortfolioItem, VideoAspectRatio } from '../../../types/portfolio';
 import { addPortfolioItem, updatePortfolioItem } from '../../../services/portfolioService';
 import FileUploadField from './FileUploadField';
-import { getFileType } from '../../../services/storageService';
+import VideoAspectRatioSelector from './VideoAspectRatioSelector';
+import { useAudit } from '../../../hooks/useAudit';
 
 interface PortfolioItemModalProps {
   isOpen: boolean;
@@ -18,12 +19,14 @@ export default function PortfolioItemModal({
   onSaved,
   editingItem
 }: PortfolioItemModalProps) {
+  const { log } = useAudit();
   const [formData, setFormData] = useState({
     title: '',
     description: '',
     type: 'image' as 'image' | 'video',
     url: '',
     thumbnail: '',
+    aspectRatio: '16:9' as VideoAspectRatio,
     dimensions: {
       width: 1920,
       height: 1080
@@ -38,6 +41,7 @@ export default function PortfolioItemModal({
         type: editingItem.type,
         url: editingItem.url,
         thumbnail: editingItem.thumbnail,
+        aspectRatio: editingItem.aspectRatio || '16:9',
         dimensions: editingItem.dimensions || { width: 1920, height: 1080 }
       });
     } else {
@@ -47,6 +51,7 @@ export default function PortfolioItemModal({
         type: 'image',
         url: '',
         thumbnail: '',
+        aspectRatio: '16:9',
         dimensions: { width: 1920, height: 1080 }
       });
     }
@@ -55,10 +60,24 @@ export default function PortfolioItemModal({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      // Update dimensions based on aspect ratio for videos
+      const dimensions = formData.type === 'video' 
+        ? formData.aspectRatio === '16:9'
+          ? { width: 1920, height: 1080 }
+          : { width: 1080, height: 1920 }
+        : undefined;
+
+      const itemData = {
+        ...formData,
+        dimensions
+      };
+
       if (editingItem) {
-        await updatePortfolioItem(editingItem.id, formData);
+        await updatePortfolioItem(editingItem.id, itemData);
+        await log('update_portfolio', `Updated portfolio item: ${itemData.title}`, 'portfolio');
       } else {
-        await addPortfolioItem(formData);
+        await addPortfolioItem(itemData);
+        await log('create_portfolio', `Created portfolio item: ${itemData.title}`, 'portfolio');
       }
       onSaved();
     } catch (error) {
@@ -66,16 +85,14 @@ export default function PortfolioItemModal({
     }
   };
 
-  const handleMainFileUploaded = (url: string) => {
+  const handleAspectRatioChange = (ratio: VideoAspectRatio) => {
     setFormData(prev => ({
       ...prev,
-      url,
-      thumbnail: prev.type === 'image' ? url : prev.thumbnail
+      aspectRatio: ratio,
+      dimensions: ratio === '16:9'
+        ? { width: 1920, height: 1080 }
+        : { width: 1080, height: 1920 }
     }));
-  };
-
-  const handleThumbnailUploaded = (url: string) => {
-    setFormData(prev => ({ ...prev, thumbnail: url }));
   };
 
   if (!isOpen) return null;
@@ -133,17 +150,29 @@ export default function PortfolioItemModal({
             </select>
           </div>
 
+          {formData.type === 'video' && (
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Formato do Vídeo
+              </label>
+              <VideoAspectRatioSelector
+                value={formData.aspectRatio}
+                onChange={handleAspectRatioChange}
+              />
+            </div>
+          )}
+
           <FileUploadField
             label={formData.type === 'video' ? 'Vídeo' : 'Imagem'}
             accept={formData.type === 'video' ? 'video/*' : 'image/*'}
-            onFileUploaded={handleMainFileUploaded}
+            onFileUploaded={(url) => setFormData({ ...formData, url })}
             currentUrl={formData.url}
           />
 
           <FileUploadField
             label="Thumbnail"
             accept="image/*"
-            onFileUploaded={handleThumbnailUploaded}
+            onFileUploaded={(url) => setFormData({ ...formData, thumbnail: url })}
             currentUrl={formData.thumbnail}
           />
 

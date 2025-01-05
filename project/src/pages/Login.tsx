@@ -33,7 +33,7 @@ export default function Login() {
           </Link>
 
           <h2 className="text-2xl font-bold text-center text-gray-900 mb-8">
-            {isLogin ? 'Login Administrativo' : 'Criar Conta'}
+            {isLogin ? 'Login Administrativo' : ''}
           </h2>
           
           {isLogin ? <LoginForm /> : <RegisterForm />}
