@@ -12,6 +12,12 @@ export interface FormData {
   ideas: string;
   services: string[];
   createdAt: any;
-  status?: 'pending' | 'completed';
+  status: 'new' | 'inProgress' | 'completed';
   comments?: Comment[];
+}
+
+export interface KanbanColumn {
+  id: 'new' | 'inProgress' | 'completed';
+  title: string;
+  items: FormData[];
 }

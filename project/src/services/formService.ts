@@ -17,7 +17,7 @@ export const submitForm = async (data: Omit<FormData, 'createdAt' | 'id' | 'stat
   try {
     const formData: Omit<FormData, 'id'> = {
       ...data,
-      status: 'pending',
+      status: 'new',
       createdAt: serverTimestamp(),
       comments: []
     };
@@ -46,7 +46,7 @@ export const getSubmissions = async (): Promise<FormData[]> => {
   }
 };
 
-export const updateSubmissionStatus = async (id: string, status: 'pending' | 'completed') => {
+export const updateSubmissionStatus = async (id: string, status: FormData['status']) => {
   try {
     const submissionRef = doc(db, 'submissions', id);
     await updateDoc(submissionRef, { status });
