@@ -37,19 +37,20 @@ export default function TestimonialCarousel({ testimonials }: TestimonialCarouse
       >
         {testimonials.map((testimonial, index) => (
           <div
-            key={testimonial.id}
-            className={`w-full min-w-full transition-all duration-500 px-0.001 ${
-              isMobile
-                ? 'scale-90'
-                : index === currentIndex
-                ? 'scale-100 opacity-90'
-                : 'scale-80 opacity-45'
-            }`}
-          >
-            <div className="max-w-sm mx-auto">
-              <TestimonialCard {...testimonial} />
-            </div>
+          key={testimonial.id}
+          className={`w-full min-w-full transition-all duration-500 px-0.001 ${
+            isMobile
+              ? 'scale-90'
+              : index === currentIndex
+              ? 'scale-100 opacity-90'
+              : 'scale-50 opacity-100'
+          }`}
+        >
+          <div className="max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto">
+            <TestimonialCard {...testimonial} />
           </div>
+        </div>
+        
         ))}
       </div>
     </div>
